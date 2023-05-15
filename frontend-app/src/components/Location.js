@@ -2,7 +2,7 @@ function Location (props) {
     return (
         <>
         <div>
-            <button >{props.locationName}</button>
+            <button className="btnLocation">{props.locationName}</button>
         </div>
         </>
     )

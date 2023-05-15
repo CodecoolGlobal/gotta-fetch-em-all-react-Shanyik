@@ -2,7 +2,7 @@ function Header (props) {
     return (
         <>
         <div>
-            <h1>{props.className}</h1>
+            <h1 className="header"></h1>
         </div>
         </>
     )

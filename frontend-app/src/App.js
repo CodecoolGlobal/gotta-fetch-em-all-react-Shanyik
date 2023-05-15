@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 import Header from "./components/Header";
 import Location from "./components/Location";
 
@@ -29,8 +29,13 @@ function App() {
 
   return (
     <div className="App">
-
-      <Header className="Poké-shiet" />
+      <div className="topnav">
+        <a href="#location">Location</a>
+        <a href="#pokemons">Pokemons</a>
+        <a href="#pokedex">Pokédex</a>
+        <a className="active" href="#home">Home</a> 
+      </div>
+      <Header/>
       {allTheLocations && allThePokemons ? (
         allTheLocations.results.map((location, index) => (
           <div>
