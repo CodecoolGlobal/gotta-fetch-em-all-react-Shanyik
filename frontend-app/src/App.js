@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
 import Location from "./components/Location";
 import NavBar from "./components/NavBar";
+import StarterPokemons from "./components/StarterPokemons"
+import ShowPokemon from "./components/ShowPokemon"
 
 function App() {
   const [allThePokemons, setAllThePokemons] = useState(null);
   const [allTheLocations, setAllTheLocations] = useState(null);
   const [activeLink, setActiveLink] = useState("#home");
-  const [encounteredPokemon, setEncounteredPokemon] = useState(null);
-  const [showEncounter, setShowEncounter] = useState(false);
+  const [selectedStarterPokemon , setSelectedStarterPokemon] = useState(false);
+  const [ownedPokemons , setOwndedPokemons] = useState([]);
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=1281")
@@ -26,66 +27,45 @@ function App() {
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    setEncounteredPokemon(null);
-    setShowEncounter(false);
-  };
 
-  const handleLocationClick = (locationURL) => {
-    fetch(locationURL)
-      .then((res) => res.json())
-      .then((data) => {
-        const encounterCount = data.pokemon_encounters.length;
-        if (encounterCount > 0) {
-          const randomIndex = Math.floor(Math.random() * encounterCount);
-          const randomPokemon = data.pokemon_encounters[randomIndex].pokemon;
-          setEncounteredPokemon(randomPokemon);
-        } else {
-          setEncounteredPokemon(null);
-        }
-        setShowEncounter(true);
-      });
-  };
-
-  const handleReturnToLocations = () => {
-    setShowEncounter(false);
   };
 
   return (
     <div className="App">
       <NavBar activeLink={activeLink} onLinkClick={handleLinkClick} />
-      <Header />
-      {showEncounter ? (
-        <div>
-          {encounteredPokemon ? (
-            <>
-              <h2>Encountered Pokémon:</h2>
-              <img src={encounteredPokemon.sprites.front_default} alt={encounteredPokemon.name} />
-              <p>Name: {encounteredPokemon.name}</p>
-            </>
-          ) : (
-            <>
-              <p>This location doesn't seem to have any Pokémon.</p>
-              <button onClick={handleReturnToLocations}>Return to Locations</button>
-            </>
-          )}
-        </div>
-      ) : (
-        allTheLocations &&
-        allThePokemons &&
-            allTheLocations.results.map((location, index) => (
-              <div key={index}>
-                {activeLink === "#location" && (
-                  <Location
-                    locationName={location.name}
-                    locationURL={location.url}
-                    onLocationClick={handleLocationClick}
-                  />
-                )}
-              </div>
-            ))
-          )}
-        </div>
-      );
-    }
+      {
+        allTheLocations && allThePokemons && activeLink === "#location" ? (
+          allTheLocations.results.map((location, index) => (
+            <div key={index}>     
+              <Location locationName={location.name} locationURL={location.url} />
+            </div>
+          ))
+        ) : activeLink === "#pokemons" ? (
+          <div>
+            { 
+              !selectedStarterPokemon ? (
+              <StarterPokemons setStarter = {setSelectedStarterPokemon} pushStarterPokemon = {ownedPokemons}  />
+              ) : (
+                <>
+                  {ownedPokemons.map((pokemon,index) => (
+                    <ShowPokemon pokemon={pokemon}/>
+                  ))}
+                </>
+              )
+            }
+          </div>
+        ) : activeLink === "#pokedex" ? (
+          <div>
+            <h1>pokédex</h1>
+          </div>
+        ) : activeLink === "#home" ? (
+          <div>
+            <h1>home</h1>
+          </div>
+        ) : ("")
+      }
+    </div>
+  );
+}
     
-    export default App;
+export default App;
