@@ -22,63 +22,70 @@ function App() {
   const handleLinkClick = (link) => {
     setActiveLink(link);
   };
-  console.log(ownedPokemons)
+
+  const handlePostRequest = (dataToSend) => {
+      fetch("http://localhost:3003/pokemonDB", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend)
+      }).catch(err =>
+          console.log("An Error Occured!" + err))
+        console.log("Fetch ran!")
+  }
+
   useEffect(() => {
-    fetch("http://localhost:3003/pokemonDB", {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(ownedPokemons)
-    }).then(res =>{
-      return res.json()
-    }).then(data => console.log(data))
-    .catch(err => console.log("An Error Occured!"))
+    if (ownedPokemons === []){
+      console.log("There is no pokemon to save.")
+    }else if (ownedPokemons !== []){
+      handlePostRequest(ownedPokemons)
+    }
   }, [ownedPokemons])
 
-  return (
-    <div className="App">
-      <NavBar activeLink={activeLink} onLinkClick={handleLinkClick} />
-      {
-        activeLink === "#locations" ? (
-          <Location setSelectedLocation={setSelectedLocation} setActiveLink={setActiveLink} />
-        ) : activeLink === "#location" && selectedLocation ? (
-          <Area selectedLocation={selectedLocation} setSelectedArea={setSelectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} />
-        ) : activeLink === "#area" && selectedArea && !enemyPokemon ? (
-          <RandomPokemon selectedArea={selectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} enemyPokemon={enemyPokemon} />
-        ) : enemyPokemon && activeLink === "#area" ? (
-          <RandomPokemon selectedArea = {selectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon} enemyPokemon = {enemyPokemon}/>
-        ) : activeLink === "#startBattleScreen" ? (
-          <StartBattleScreen enemyPokemon = {enemyPokemon} ownedPokemons = {ownedPokemons} setActiveLink = {setActiveLink} setChosenPokemon = {setChosenPokemon}/>
-        ) : activeLink === "#battleScreen" ? (
-          <BattleScreen enemyPokemon = {enemyPokemon} ownedPokemons = {ownedPokemons} chosenPokemon = {chosenPokemon} setActiveLink = {setActiveLink}/>
-        ) : activeLink === "#pokemons" ? (
-          <div className="chosenPokemons">
-            { 
-              !selectedStarterPokemon ? (
-                <StarterPokemons setStarter={setSelectedStarterPokemon} pushStarterPokemon={ownedPokemons} />
-              ) : (
-                <>
-                  {ownedPokemons.map((pokemon, index) => (
-                    <ShowPokemon pokemon={pokemon} />
-                  ))}
-                </>
-              )
-            }
-          </div>
-        ) : activeLink === "#pokedex" ? (
-          <div>
-            <ShowPokedex />
-          </div>
-        ) : activeLink === "#home" ? (
-          <div>
-            <h1>Home</h1>
-          </div>
-        ) : ("")
-      }
-    </div>
-  );
+    return (
+      <div className="App">
+        <NavBar activeLink={activeLink} onLinkClick={handleLinkClick} />
+        {
+          activeLink === "#locations" ? (
+            <Location setSelectedLocation={setSelectedLocation} setActiveLink={setActiveLink} />
+          ) : activeLink === "#location" && selectedLocation ? (
+            <Area selectedLocation={selectedLocation} setSelectedArea={setSelectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} />
+          ) : activeLink === "#area" && selectedArea && !enemyPokemon ? (
+            <RandomPokemon selectedArea={selectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} enemyPokemon={enemyPokemon} />
+          ) : enemyPokemon && activeLink === "#area" ? (
+            <RandomPokemon selectedArea={selectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} enemyPokemon={enemyPokemon} />
+          ) : activeLink === "#startBattleScreen" ? (
+            <StartBattleScreen enemyPokemon={enemyPokemon} ownedPokemons={ownedPokemons} setActiveLink={setActiveLink} setChosenPokemon={setChosenPokemon} />
+          ) : activeLink === "#battleScreen" ? (
+            <BattleScreen enemyPokemon={enemyPokemon} ownedPokemons={ownedPokemons} chosenPokemon={chosenPokemon} setActiveLink={setActiveLink} />
+          ) : activeLink === "#pokemons" ? (
+            <div className="chosenPokemons">
+              {
+                !selectedStarterPokemon ? (
+                  <StarterPokemons setStarter={setSelectedStarterPokemon} pushStarterPokemon={ownedPokemons} />
+                ) : (
+                  <>
+                    {ownedPokemons.map((pokemon, index) => (
+                      <ShowPokemon pokemon={pokemon} />
+                    ))}
+                  </>
+                )
+              }
+            </div>
+          ) : activeLink === "#pokedex" ? (
+            <div>
+              <ShowPokedex />
+            </div>
+          ) : activeLink === "#home" ? (
+            <div>
+              <h1>Home</h1>
+            </div>
+          ) : ("")
+        }
+      </div>
+    );
 }
 
 export default App;

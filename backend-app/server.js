@@ -27,11 +27,14 @@ app.get("/pokemonDB", (req, res) => {
     res.send(JSON.stringify(frontendData))
 })
 
-app.post("/pokemonDB", (req, res) => {
-    let pokemonDB = req.body
-    console.log(pokemonDB)
-    fs.writeFileSync("./public/pokemonDB.json", JSON.stringify(pokemonDB))
-    res.send(pokemonDB)
+app.post("/pokemonDB",async (req, res) => {
+    try{
+    console.log("POST request running")
+    fs.writeFileSync("./public/pokemonDB.json", JSON.parse(JSON.stringify(req.body)))
+    res.send("POST Request Done!")
+  }catch(err){
+  console.log("err")
+}
 })
 
 

@@ -22,7 +22,7 @@ function StarterPokemons(props) {
       .then((res) => res.json())
       .then((data) => {
         setStarterSquirtle(data);
-      })
+      })})
 
     return (
         <>

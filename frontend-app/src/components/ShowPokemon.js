@@ -4,7 +4,7 @@ function ShowPokemon (props) {
         <>
         <div className={props.mainDiv}>
             {console.log(props.pokemon)}
-            <img className="pokePic" src={props.pokemon.sprites.front_default}></img>
+            <img className="pokePic" src={props.pokemon.sprites.front_default} alt=""></img>
             <div className="statsDiv">
             <h3 className="header3">Name: {props.pokemon.name}</h3>
             {props.pokemon.stats.map((stat, index) => (
