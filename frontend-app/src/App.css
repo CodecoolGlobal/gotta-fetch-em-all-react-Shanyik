@@ -44,7 +44,7 @@
   color: white;
   animation: blink 3.5s infinite;
 }
-
+/*
 @keyframes blink {
   0% {
     background-color: #051da8;
@@ -57,7 +57,7 @@
     background-color: #051da8;
   }
 }
-
+*/
 
 /*.header {
   border-radius: 15px;
