@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import ShowPokemon from "./ShowPokemon"
+import battleBG from "./pictures/battleBG.png"
 
 function BattleScreen (props) {
 
@@ -35,22 +36,20 @@ function BattleScreen (props) {
    
  return (
    !result ? (
-        <>
-            
-            <div>
-                <h1>Enemy Pokemon</h1>
-                <img src={props.enemyPokemon.sprites["front_default"]}></img>
-                <h2>{props.enemyPokemon.name}</h2>
-                <h2>{enemyPokemonHP}</h2>
+        <div className="battle-container">
+            <img src={battleBG} alt="Battle Background" className="battle-bg" />
+            <div className="battle-enemy">
+                <h1 className="enemyName">{props.enemyPokemon.name}</h1>
+                <img className="enemyPic" src={props.enemyPokemon.sprites["front_default"]}></img>
+                <h2 className="enemy-heart">{enemyPokemonHP}❤️</h2>
             </div>
-            <div>
-                <h1>Your Pokemon</h1>
-                <img src={props.chosenPokemon.sprites["back_default"]}></img>
-                <h2>{props.chosenPokemon.name}</h2>
-                <h2>{chosenPokemonHP}</h2>
+            <div className="battle-player">
+                <h1 className="playerName">{props.chosenPokemon.name}</h1>
+                <img className="playerPic" src={props.chosenPokemon.sprites["back_default"]}></img>
+                <h2 className="player-heart">{chosenPokemonHP}❤️</h2>
             </div>
-            <button  onClick={() => {battleMode()}}>Attack</button>
-        </>
+            <button className="btnAttack" onClick={() => {battleMode()}}>Attack ⚔️</button>
+        </div>
     ) : result === "win" ? (
         <>
             <h1>Nice battle, You Won!</h1>

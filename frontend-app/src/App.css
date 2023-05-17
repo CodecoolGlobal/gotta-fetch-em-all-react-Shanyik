@@ -472,3 +472,78 @@ body{
 .btnStart:hover {
   box-shadow: 5px 5px 5px rgb(44, 44, 44);
 }
+
+.btnAttack {
+  position: relative;
+  font-family: 'Pokemon GB';
+  letter-spacing: 3px;
+  font-size: 20px;
+  top: 900px;
+  left: 0px;
+  margin-top: 30px;
+  text-transform: capitalize;
+  border-radius: 15px;
+  border-width: 10px;
+  margin-top: 1px;
+}
+
+.btnAttack:hover{
+  box-shadow: 5px 5px 5px rgb(44, 44, 44);
+}
+
+.battle-player{
+  position: absolute;
+  display: block;
+  top: 550px;
+  left: 770px;
+  text-transform: capitalize;
+}
+
+.battle-enemy{
+  position: absolute;
+  display: block;
+  top: 420px;
+  left: 1270px;
+  text-transform: capitalize;
+}
+
+.battle-bg {
+  position: absolute;
+  top: 300px;
+  left: 700px;
+  height: 480px;
+  width: 800px;
+  z-index: -1;
+  border: 7px solid rgb(224, 4, 4);
+  box-sizing: border-box;
+}
+
+.playerName {
+  font-size: 15px;
+  background-color: #ddddddb9;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.enemyName {
+  font-size: 15px;
+  background-color: #ddddddb9;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.playerPic {
+  height: 200px;
+}
+
+.enemyPic {
+  height: 150px;
+}
+
+.player-heart {
+  margin-top: -200px;
+}
+
+.enemy-heart {
+  margin-top: -155px;
+}
