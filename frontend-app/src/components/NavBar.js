@@ -5,9 +5,9 @@ export default function NavBar({ activeLink, onLinkClick }) {
     <>
       <div className="topnav">
         <a
-          href="#location"
-          onClick={() => onLinkClick("#location")}
-          className={activeLink === "#location" ? "active" : ""}
+          href="#locations"
+          onClick={() => onLinkClick("#locations")}
+          className={activeLink === "#locations" ? "active" : ""}
         >
           Location
         </a>

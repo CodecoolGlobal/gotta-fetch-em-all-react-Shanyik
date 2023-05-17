@@ -2,45 +2,38 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Location from "./components/Location";
 import NavBar from "./components/NavBar";
-import StarterPokemons from "./components/StarterPokemons"
-import ShowPokemon from "./components/ShowPokemon"
+import StarterPokemons from "./components/StarterPokemons";
+import ShowPokemon from "./components/ShowPokemon";
+import ShowPokedex from "./components/ShowPokedex";
+import Area from "./components/Area"
+import RandomPokemon from "./components/RandomPokemon";
 
 function App() {
-  const [allThePokemons, setAllThePokemons] = useState(null);
-  const [allTheLocations, setAllTheLocations] = useState(null);
   const [activeLink, setActiveLink] = useState("#home");
   const [selectedStarterPokemon , setSelectedStarterPokemon] = useState(false);
-  const [ownedPokemons , setOwndedPokemons] = useState([]);
+  const [ownedPokemons , setOwnedPokemons] = useState([]);
 
-  useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=1281")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllThePokemons(data);
-      });
-    fetch("https://pokeapi.co/api/v2/location?limit=20")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllTheLocations(data);
-      });
-  }, []);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedArea, setSelectedArea] = useState(null);
+  const [enemyPokemon, setEnemyPokemon] = useState(null);
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-
   };
 
   return (
     <div className="App">
       <NavBar activeLink={activeLink} onLinkClick={handleLinkClick} />
       {
-        allTheLocations && allThePokemons && activeLink === "#location" ? (
-          allTheLocations.results.map((location, index) => (
-            <div key={index}>     
-              <Location locationName={location.name} locationURL={location.url} />
-            </div>
-          ))
-        ) : activeLink === "#pokemons" ? (
+        activeLink === "#locations" ? (
+          <Location setSelectedLocation = {setSelectedLocation} setActiveLink = {setActiveLink}/>
+        ) : activeLink === "#location"  && selectedLocation ? (
+          <Area selectedLocation = {selectedLocation} setSelectedArea = {setSelectedArea} setActiveLink = {setActiveLink}/>
+        ) : activeLink === "#area"  && selectedArea && !enemyPokemon ?  (
+          <RandomPokemon selectedArea = {selectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon} enemyPokemon = {enemyPokemon}/>
+        ) : enemyPokemon ? (
+          <RandomPokemon selectedArea = {selectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon} enemyPokemon = {enemyPokemon}/>
+        ) :  activeLink === "#pokemons" ? (
           <div>
             { 
               !selectedStarterPokemon ? (
@@ -56,7 +49,7 @@ function App() {
           </div>
         ) : activeLink === "#pokedex" ? (
           <div>
-            <h1>pokédex</h1>
+            <ShowPokedex/>
           </div>
         ) : activeLink === "#home" ? (
           <div>

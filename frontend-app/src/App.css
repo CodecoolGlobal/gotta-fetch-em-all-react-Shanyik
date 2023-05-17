@@ -102,3 +102,11 @@ This CSS rule is made for any headers if needed
 .hidden {
   display: none;
 }
+
+.scrollDiv {
+  top: 10%;
+  left: 10%;
+  overflow: scroll;
+  height: 600px;
+  width: 500px;
+}
