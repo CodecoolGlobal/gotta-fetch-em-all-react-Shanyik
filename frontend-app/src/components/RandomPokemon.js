@@ -25,7 +25,7 @@ function RandomPokemon (props) {
             <>
                 <button className="btnApproach" onClick={() => {getRandomPokemon()}}>Something approaches...</button>
                 {props.enemyPokemon ? (
-                    <div className="enemyPokemon">
+                    <div className="appearedPokemon">
                         <ShowPokemon pokemon={props.enemyPokemon} />
                         <button className="btnEncounter" onClick={() => startBattleScreen()} > <a href="#battleScreen">Encounter!</a></button>
                     </div>

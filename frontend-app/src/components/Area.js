@@ -16,8 +16,8 @@ function Area (props) {
     return (
         props.selectedLocation.areas.map((area,index) => (
             <>
-                <div>
-                    <button className="btnLocation" onClick={() => setSelectedAreaFromLocation(area)}><a href="#area">{area.name}</a></button>
+                <div className="areaChoose">
+                    <button className="btnArea" onClick={() => setSelectedAreaFromLocation(area)}><a href="#area">{area.name}</a></button>
                 </div>
             </>
         ))

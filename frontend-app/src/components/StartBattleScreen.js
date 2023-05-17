@@ -4,17 +4,17 @@ function StartBattleScreen (props) {
 
  return (
     <>
-        <div>
-            <h1>Enemy Pokemon</h1>
+        <div className="enemyPokemon">
+            <h1 className="enemyTitle">Enemy Pokemon</h1>
             <ShowPokemon pokemon={props.enemyPokemon}/>
         </div>
 
-        <div>
-            <h1>Choose Your pokemon!</h1>
+        <div className="playerPokemon">
+            <h1 className="playerTitle">Your chosen Pokemon</h1>
             {props.ownedPokemons.map((pokemon,index) => (
                 <>
                     <ShowPokemon pokemon={pokemon}/>
-                    <button onClick={() => {props.setChosenPokemon(pokemon); props.setActiveLink("#battleScreen")}} >I choose you, {pokemon.name}</button>
+                    <button className="btnStart" onClick={() => {props.setChosenPokemon(pokemon); props.setActiveLink("#battleScreen")}} >Fight!</button>
                 </>
             ))}
         </div>

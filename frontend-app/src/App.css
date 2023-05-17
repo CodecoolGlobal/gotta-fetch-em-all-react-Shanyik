@@ -3,6 +3,19 @@
   src: url('./components/pictures/PokemonGb-RAeo.ttf');
 }
 
+body{
+  background-image: url('./components/pictures/stacked-waves-haikei\ \(1\).svg');
+  background-repeat: infinite;
+  background-size: cover;
+  animation: rotate 6s infinite alternate linear;
+}
+
+@keyframes rotate{
+  100%{
+      background-position: 5% 6%;
+  }
+}
+
 .App {
   width: 100%;
   height: 100vh;
@@ -11,12 +24,6 @@
   align-items: center;
   text-align: center;
   justify-content: center;
-  background-size: 300% 300%;
-  background-image: linear-gradient(-45deg, yellow 0%, yellow 25%, yellow 51%, #ff357f 100%);
-  -webkit-animation: AnimateBG 20s ease infinite;
-          animation: AnimateBG 20s ease infinite;
-  background-repeat: repeat;
-  overflow: hidden;
 }
 
 .topnav {
@@ -44,18 +51,6 @@
 .topnav a.active {
   background-color: #051da8;
   color: white;
-}
-
-@keyframes AnimateBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 .directions {
@@ -103,6 +98,42 @@
 
 .locationBG {
   height: 100vh;
+}
+
+.searchBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.searchBox input {
+  position: absolute;
+  height: 36px;
+  left: 940px;
+  top: 720px;
+  font-family: inherit;
+  border-radius: 8px 0 0 8px;
+  border: 0;
+  outline: none;
+  padding: 4px 16px;
+  background-color: white;
+  color: #000;
+  text-transform: uppercase;
+  z-index: 100;
+}
+
+.searchBox button {
+  border-radius: 0 8px 8px 0;
+  border: 0;
+  height: 44px;
+  padding: 4px 16px;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  left: 190px;
+  top: 670px;
+  z-index: 100;
 }
 
 .scrollDiv {
@@ -164,7 +195,7 @@
 
 .radioContainer {
   margin-top: 5px;
-  display: flex;
+  display: absolute;
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 10px;
@@ -177,7 +208,6 @@
 
 .radioContainer label {
   display: flex;
-  align-items: center;
   margin-right: 10px;
   padding: 8px 12px;
   border-radius: 20px;
@@ -243,6 +273,9 @@
   position: relative;
   margin-top: -50px;
   width: 500px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+
 }
 
 .starterPokemons .pokePic {
@@ -277,6 +310,8 @@
   display: block;
   position: relative;
   margin-top: -60px;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
 .chosenPokemons .pokePic {
@@ -288,7 +323,6 @@
   font-family: 'Pokemon GB';
   letter-spacing: 3px;
   font-size: 20px;
-  left: 20px;
   text-transform: capitalize;
   border-radius: 15px;
   border-width: 10px;
@@ -299,19 +333,82 @@
   box-shadow: 5px 5px 5px rgb(44, 44, 44);
 }
 
-.enemyPokemon {
+.appearedPokemon {
   display: block;
   position: absolute;
   left: 850px;
+}
+
+.appearedPokemon .statsDiv {
+  display: block;
+  position: relative;
+  top: -5px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.appearedPokemon .pokePic {
+  left: -100px;
+}
+
+.enemyTitle {
+  position: absolute;
+  top: -30px;
+}
+
+.playerTitle {
+  position: absolute;
+  top: -30px;
+  transform: translateX(-15%);
+}
+
+.enemyPokemon {
+  display: block;
+  position: absolute;
+  left: 1450px;
+  top: 130px;
 }
 
 .enemyPokemon .statsDiv {
   display: block;
   position: relative;
   top: -5px;
+  height: 280px;
+  box-shadow: 5px 5px 5px rgb(250, 0, 0);
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.enemyPokemon .statsDiv:hover {
+  background-color: rgb(250, 0, 0);
 }
 
 .enemyPokemon .pokePic {
+  left: -100px;
+}
+
+.playerPokemon {
+  display: block;
+  position: absolute;
+  left: 300px;
+  top: 135px;
+}
+
+.playerPokemon .statsDiv {
+  display: block;
+  position: relative;
+  height: 280px;
+  top: -5px;
+  box-shadow: -5px 5px 5px rgb(3, 0, 170);
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.playerPokemon .statsDiv:hover {
+  background-color: rgb(3, 0, 170) ;
+}
+
+.playerPokemon .pokePic {
   left: -100px;
 }
 
@@ -331,3 +428,47 @@
   box-shadow: 5px 5px 5px rgb(44, 44, 44);
 }
 
+.areaChoose {
+  position: relative;
+  height: 500px;
+  top: 100px;
+  left: 850px;
+  border-radius: 15px;
+  width: 500px;
+  margin-bottom: -400px;
+}
+
+.btnArea {
+  position: relative;
+  font-family: 'Pokemon GB';
+  letter-spacing: 3px;
+  font-size: 20px;
+  top: 20px;
+  margin-top: 30px;
+  text-transform: capitalize;
+  border-radius: 15px;
+  border-width: 10px;
+  margin-top: 1px;
+}
+
+.btnArea:hover {
+  box-shadow: 5px 5px 5px rgb(44, 44, 44);
+}
+
+.btnStart {
+  position: relative;
+  font-family: 'Pokemon GB';
+  letter-spacing: 3px;
+  font-size: 20px;
+  top: 20px;
+  left: 470px;
+  margin-top: 30px;
+  text-transform: capitalize;
+  border-radius: 15px;
+  border-width: 10px;
+  margin-top: 1px;
+}
+
+.btnStart:hover {
+  box-shadow: 5px 5px 5px rgb(44, 44, 44);
+}
