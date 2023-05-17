@@ -10,7 +10,7 @@ function Area (props) {
           .then(() => {
             props.setActiveLink("#area")
           })
-        
+          props.setEnemyPokemon(null);
     }
 
     return (
