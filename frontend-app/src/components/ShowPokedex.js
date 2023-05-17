@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import ShowPokemon from "./ShowPokemon";
+import PokePic from "./pictures/pokedex.jpg"
+import PokeBG from "./pictures/pokeBG.jpg"
 
 function ShowPokedex (props) {    
 
@@ -26,11 +28,12 @@ function ShowPokedex (props) {
       allThePokemons ? (
         <>
         <div className="pokedex">
+        <img className="pokePhone" src={PokePic} alt="PokePhone"></img>
           <div className="scrollDiv">
               {allThePokemons.results.map((pokemon,index) => (
-                <div key={pokemon.name}>
-                <label>{pokemon.name}</label>,
-                <input type="radio" value={pokemon.name} name="selectPokemonRadioButton" onChange={() => showSelectedPokemon(pokemon.url)}/>
+                <div key={pokemon.name} className="radioContainer">
+                <input type="radio" id={`pokemon-${index}`} value={pokemon.name} name="selectPokemonRadioButton" onChange={() => showSelectedPokemon(pokemon.url)}/>
+                <label htmlFor={`pokemon-${index}`}>{pokemon.name}</label>
                 </div>
               ))}
           </div>
@@ -38,6 +41,7 @@ function ShowPokedex (props) {
                 {selectedPokemon ? (
                   <ShowPokemon pokemon={selectedPokemon} />
                 ) :("")}
+                <img className="pokebackground" src={PokeBG} alt="PokePhone"></img>
             </div>
         </div>
         </>

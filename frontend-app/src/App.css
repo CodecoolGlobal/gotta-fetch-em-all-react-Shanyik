@@ -42,9 +42,9 @@
 .topnav a.active {
   background-color: #051da8;
   color: white;
-  animation: blink 1s infinite;
+  animation: blink 3.5s infinite;
 }
-/*
+
 @keyframes blink {
   0% {
     background-color: #051da8;
@@ -57,7 +57,7 @@
     background-color: #051da8;
   }
 }
-*/
+
 
 /*.header {
   border-radius: 15px;
@@ -104,9 +104,115 @@ This CSS rule is made for any headers if needed
 }
 
 .scrollDiv {
-  top: 10%;
-  left: 10%;
+  display: grid;
+  position: fixed;
+  margin-top: 10px;
+  top: 20px;
+  left: -40px;
   overflow: scroll;
-  height: 600px;
-  width: 500px;
+  height: 900px;
+  width: 570px;
+  float: left;
+  scroll-behavior: smooth;
+  border-radius: 20px;
+  background-color: #04d3e2ce;
+  transform: scale(0.5);
+}
+
+.scrollDiv::-webkit-scrollbar {
+  width: 12px;
+  background-color: #04d3e2ce;
+}
+
+.scrollDiv::-webkit-scrollbar-track {
+  background: #04d3e2ce; 
+}
+
+.scrollDiv::-webkit-scrollbar-thumb {
+  background: #e3e702; 
+}
+
+.scrollDiv::-webkit-scrollbar-track {
+  background: transparent; 
+  border: none; 
+}
+
+.pokePic {
+  height: 200px;
+  position: relative;
+  left: 100px;
+}
+
+.header3 {
+  text-transform: uppercase;
+}
+
+.stats {
+  text-transform: capitalize;
+}
+
+.pokeDiv {
+  display: block;
+  height: 300px;
+  left: 900px;
+  top: 200px;
+  position: absolute;
+  z-index: 100;
+}
+
+.radioContainer {
+  margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.radioContainer input[type="radio"] {
+  display: none;
+}
+
+.radioContainer label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background-color: #ffffffc7;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 4px 8px rgba(0, 0, 0, 0.164);
+  text-transform: uppercase;
+}
+
+.radioContainer input[type="radio"]:checked + label {
+  background-color: #d60505;
+  animation: selectShift 3s infinite;
+  color: #a8a8a8;
+}
+
+.pokePhone {
+  height: 750px;
+  position: fixed;
+  top: 100px;
+  left: 40px;
+}
+
+.pokebackground {
+  position: absolute;
+  height: 300px;
+  top: 100px;
+  left: 840px;
+  border-radius: 15px;
+  border-width: 10px;
+}
+
+.statsDiv {
+  position: absolute;
+  background-color: #a8a8a880;
+  border-radius: 15px;
+  width: 650px;
+  left: -120px;
+  box-shadow: 5px 5px 5px rgba(80, 80, 80, 0.336);
 }

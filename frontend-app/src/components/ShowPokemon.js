@@ -1,13 +1,15 @@
 function ShowPokemon (props) {     
     return (
         <>
-        <div>
+        <div className="pokeDiv">
             {console.log(props.pokemon)}
-            <img src={props.pokemon.sprites.front_default}></img>
-            <h3>Name: {props.pokemon.name}</h3>
+            <img className="pokePic" src={props.pokemon.sprites.front_default}></img>
+            <div className="statsDiv">
+            <h3 className="header3">Name: {props.pokemon.name}</h3>
             {props.pokemon.stats.map((stat, index) => (
-                <p>{stat.stat.name} : {stat.base_stat}</p>
+                <p className="stats">{stat.stat.name} : {stat.base_stat}</p>
             ))}
+            </div>
         </div>
         </>
     )
