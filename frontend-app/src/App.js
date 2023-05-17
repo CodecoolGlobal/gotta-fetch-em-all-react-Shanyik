@@ -40,7 +40,7 @@ function App() {
         ) : activeLink === "#battleScreen" ? (
           <BattleScreen enemyPokemon = {enemyPokemon} ownedPokemons = {ownedPokemons} chosenPokemon = {chosenPokemon} setActiveLink = {setActiveLink}/>
         ) : activeLink === "#pokemons" ? (
-          <div>
+          <div className="chosenPokemons">
             { 
               !selectedStarterPokemon ? (
               <StarterPokemons setStarter = {setSelectedStarterPokemon} pushStarterPokemon = {ownedPokemons}  />
@@ -59,7 +59,7 @@ function App() {
           </div>
         ) : activeLink === "#home" ? (
           <div>
-            <h1>home</h1>
+            <h1>Home</h1>
           </div>
         ) : ("")
       }
