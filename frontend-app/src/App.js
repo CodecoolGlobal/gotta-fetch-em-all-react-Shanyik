@@ -7,12 +7,13 @@ import ShowPokemon from "./components/ShowPokemon";
 import ShowPokedex from "./components/ShowPokedex";
 import Area from "./components/Area"
 import RandomPokemon from "./components/RandomPokemon";
+import BattleScreen from "./components/BattleScreen";
 
 function App() {
   const [activeLink, setActiveLink] = useState("#home");
-  const [selectedStarterPokemon , setSelectedStarterPokemon] = useState(false);
-  const [ownedPokemons , setOwnedPokemons] = useState([]);
-
+  const [selectedStarterPokemon, setSelectedStarterPokemon] = useState(false);
+  const [ownedPokemons, setOwnedPokemons] = useState([]);
+  const [chosenPokemon, setChosenPokemon] = useState(null)
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
@@ -28,12 +29,16 @@ function App() {
         activeLink === "#locations" ? (
           <Location setSelectedLocation = {setSelectedLocation} setActiveLink = {setActiveLink}/>
         ) : activeLink === "#location"  && selectedLocation ? (
-          <Area selectedLocation = {selectedLocation} setSelectedArea = {setSelectedArea} setActiveLink = {setActiveLink}/>
+          <Area selectedLocation = {selectedLocation} setSelectedArea = {setSelectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon}/>
         ) : activeLink === "#area"  && selectedArea && !enemyPokemon ?  (
           <RandomPokemon selectedArea = {selectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon} enemyPokemon = {enemyPokemon}/>
-        ) : enemyPokemon ? (
+        ) : enemyPokemon && activeLink === "#area" ? (
           <RandomPokemon selectedArea = {selectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon} enemyPokemon = {enemyPokemon}/>
-        ) :  activeLink === "#pokemons" ? (
+        ) : activeLink === "#battleScreen" && !chosenPokemon ? (
+          <BattleScreen enemyPokemon = {enemyPokemon} ownedPokemons = {ownedPokemons} setChosenPokemon = {setChosenPokemon}/>
+        ) : activeLink === "#battleScreen" && chosenPokemon ? (
+          <BattleScreen enemyPokemon = {enemyPokemon} ownedPokemons = {ownedPokemons} chosenPokemon = {chosenPokemon} setActiveLink = {setActiveLink} setChosenPokemon = {setChosenPokemon}/>
+        ) : activeLink === "#pokemons" ? (
           <div>
             { 
               !selectedStarterPokemon ? (
