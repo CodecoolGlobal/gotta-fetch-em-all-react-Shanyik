@@ -18,8 +18,6 @@ function App() {
   const [selectedArea, setSelectedArea] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
 
-
-
   const handleLinkClick = (link) => {
     setActiveLink(link);
   };
