@@ -2,7 +2,7 @@ function ShowPokemon (props) {
 
     return (
         <>
-        <div className="pokeDiv">
+        <div className={props.mainDiv}>
             {console.log(props.pokemon)}
             <img className="pokePic" src={props.pokemon.sprites.front_default}></img>
             <div className="statsDiv">

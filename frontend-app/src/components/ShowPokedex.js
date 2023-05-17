@@ -39,7 +39,7 @@ function ShowPokedex (props) {
           </div>
             <div>
                 {selectedPokemon ? (
-                  <ShowPokemon pokemon={selectedPokemon} />
+                  <ShowPokemon pokemon={selectedPokemon} mainDiv="pokeDiv" />
                 ) :("")}
                 <img className="pokebackground" src={PokeBG} alt="PokePhone"></img>
             </div>
