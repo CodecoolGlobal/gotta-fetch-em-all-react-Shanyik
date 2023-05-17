@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import background from "./pictures/pokeBG.jpg";
 
 function Location (props) {   
     function setSelectedLocationFromButton(location) {
@@ -24,19 +25,25 @@ function Location (props) {
           });
       }, []);
     
-    return (
-        <>
-        {allTheLocations ? (
+      return (
+      <div className="locationBG" style={{ backgroundImage: `url("https://wallpapercave.com/wp/wp10200979.png")` }}>
+        <div className="directions">
+          {allTheLocations ? (
             allTheLocations.results.map((location, index) => (
-                <>
-                    <div>
-                        <button className="btnLocation" onClick={() => setSelectedLocationFromButton(location)}><a href="#location">{location.name}</a></button>
-                    </div>
-                </>
+              <div key={index}>
+                <button
+                  className="btnLocation"
+                  onClick={() => setSelectedLocationFromButton(location)}
+                >
+                  <a href="#location">{location.name}</a>
+                </button>
+              </div>
             ))
-        ) : ("")
-        }
-        </>
-    )
-} 
+          ) : (
+            ""
+          )}
+        </div>
+        </div>
+      );
+    }
 export default Location

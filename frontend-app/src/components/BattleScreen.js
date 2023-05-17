@@ -15,36 +15,28 @@ function BattleScreen (props) {
     const [chosenPokemonHP, setChosenPokemonHP] = useState(null)
     const [result, setResult] = useState(null)
 
-    useEffect(()=>{
-		if (props.chosenPokemon) {
+    function getHP() {
+        console.log(props.chosenPokemon)
+        if (props.chosenPokemon) {
             setChosenPokemonHP(props.chosenPokemon.stats[0]["base_stat"])
         }
     
         if (props.enemyPokemon) {
             setEnemyPokemonHP(props.enemyPokemon.stats[0]["base_stat"])
         }   
-	}, [])
+    }
 
+
+    useEffect(() => {
+        getHP()
+        console.log(chosenPokemonHP)
+      }, []);
+
+   
  return (
-    !props.chosenPokemon ? (
-    <>
-        <div>
-            <h1>Enemy Pokemon</h1>
-            <ShowPokemon pokemon={props.enemyPokemon}/>
-        </div>
-
-        <div>
-            <h1>Choose Your pokemon!</h1>
-            {props.ownedPokemons.map((pokemon,index) => (
-                <>
-                    <ShowPokemon pokemon={pokemon}/>
-                    <button onClick={() => props.setChosenPokemon(pokemon)} >I choose you, {pokemon.name}</button>
-                </>
-            ))}
-        </div>
-    </>
-    ) : props.chosenPokemon && enemyPokemonHP && chosenPokemonHP && !result ? (
+   !result ? (
         <>
+            
             <div>
                 <h1>Enemy Pokemon</h1>
                 <img src={props.enemyPokemon.sprites["front_default"]}></img>
@@ -56,21 +48,21 @@ function BattleScreen (props) {
                 <img src={props.chosenPokemon.sprites["back_default"]}></img>
                 <h2>{props.chosenPokemon.name}</h2>
                 <h2>{chosenPokemonHP}</h2>
-                <button  onClick={() => {battleMode()}}>Attack</button>
             </div>
+            <button  onClick={() => {battleMode()}}>Attack</button>
         </>
     ) : result === "win" ? (
         <>
             <h1>Nice battle, You Won!</h1>
             <h2>Do you want to catch this Pokemon?</h2>
             <ShowPokemon pokemon={props.enemyPokemon}/>
-            <button onClick={() => {props.setActiveLink("#locations"); props.ownedPokemons.push(props.enemyPokemon); props.setChosenPokemon(null); setResult(null)}}>Absolutely!</button>
-            <button onClick={() => {props.setActiveLink("#locations"); props.setChosenPokemon(null); setResult(null)}}>Nope,Thanks!</button>
+            <button onClick={() => {props.setActiveLink("#locations"); props.ownedPokemons.push(props.enemyPokemon); setResult(null)}}>Absolutely!</button>
+            <button onClick={() => {props.setActiveLink("#locations"); setResult(null)}}>Nope,Thanks!</button>
         </>
     ) : result === "lose" ? (
         <>
             <h1>Bummer! You lost!</h1>
-            <button onClick={() => {props.setActiveLink("#locations"); props.setChosenPokemon(null); setResult(null)}}>Go Back!</button>
+            <button onClick={() => {props.setActiveLink("#locations"); setResult(null)}}>Go Back!</button>
         </>
     ) : ("")
  )

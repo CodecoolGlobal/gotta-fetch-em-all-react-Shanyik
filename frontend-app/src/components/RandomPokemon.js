@@ -15,7 +15,7 @@ function RandomPokemon (props) {
     }
 
     function startBattleScreen () {
-        props.setActiveLink("#battleScreen");
+        props.setActiveLink("#startBattleScreen");
     }
 
 
@@ -23,12 +23,12 @@ function RandomPokemon (props) {
     return (
         props.selectedArea ? (
             <>
-                <button onClick={() => {getRandomPokemon()}}>Something approaches...</button>
+                <button className="btnApproach" onClick={() => {getRandomPokemon()}}>Something approaches...</button>
                 {props.enemyPokemon ? (
-                    <>
+                    <div className="enemyPokemon">
                         <ShowPokemon pokemon={props.enemyPokemon} />
-                        <button className="btnLocation" onClick={() => startBattleScreen()} > <a href="#battleScreen">Encounter!</a></button>
-                    </>
+                        <button className="btnEncounter" onClick={() => startBattleScreen()} > <a href="#battleScreen">Encounter!</a></button>
+                    </div>
                 ) : ("")}           
             </>
             

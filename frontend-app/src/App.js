@@ -8,6 +8,7 @@ import ShowPokedex from "./components/ShowPokedex";
 import Area from "./components/Area"
 import RandomPokemon from "./components/RandomPokemon";
 import BattleScreen from "./components/BattleScreen";
+import StartBattleScreen from "./components/StartBattleScreen";
 
 function App() {
   const [activeLink, setActiveLink] = useState("#home");
@@ -47,14 +48,14 @@ function App() {
         ) : activeLink === "#area" && selectedArea && !enemyPokemon ? (
           <RandomPokemon selectedArea={selectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} enemyPokemon={enemyPokemon} />
         ) : enemyPokemon && activeLink === "#area" ? (
-          <RandomPokemon selectedArea={selectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} enemyPokemon={enemyPokemon} />
-        ) : activeLink === "#battleScreen" && !chosenPokemon ? (
-          <BattleScreen enemyPokemon={enemyPokemon} ownedPokemons={setOwnedPokemons} setChosenPokemon={setChosenPokemon} />
-        ) : activeLink === "#battleScreen" && chosenPokemon ? (
-          <BattleScreen enemyPokemon={enemyPokemon} ownedPokemons={setOwnedPokemons} chosenPokemon={chosenPokemon} setActiveLink={setActiveLink} setChosenPokemon={setChosenPokemon} />
+          <RandomPokemon selectedArea = {selectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon} enemyPokemon = {enemyPokemon}/>
+        ) : activeLink === "#startBattleScreen" ? (
+          <StartBattleScreen enemyPokemon = {enemyPokemon} ownedPokemons = {ownedPokemons} setActiveLink = {setActiveLink} setChosenPokemon = {setChosenPokemon}/>
+        ) : activeLink === "#battleScreen" ? (
+          <BattleScreen enemyPokemon = {enemyPokemon} ownedPokemons = {ownedPokemons} chosenPokemon = {chosenPokemon} setActiveLink = {setActiveLink}/>
         ) : activeLink === "#pokemons" ? (
-          <div>
-            {
+          <div className="chosenPokemons">
+            { 
               !selectedStarterPokemon ? (
                 <StarterPokemons setStarter={setSelectedStarterPokemon} pushStarterPokemon={ownedPokemons} />
               ) : (
@@ -72,7 +73,7 @@ function App() {
           </div>
         ) : activeLink === "#home" ? (
           <div>
-            <h1>home</h1>
+            <h1>Home</h1>
           </div>
         ) : ("")
       }
