@@ -21,32 +21,46 @@ function App() {
   const handleLinkClick = (link) => {
     setActiveLink(link);
   };
+  console.log(ownedPokemons)
+  useEffect(() => {
+    fetch("http://localhost:3003/pokemonDB", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(ownedPokemons)
+    }).then(res =>{
+      return res.json()
+    }).then(data => console.log(data))
+    .catch(err => console.log("An Error Occured!"))
+  }, [ownedPokemons])
 
   return (
     <div className="App">
       <NavBar activeLink={activeLink} onLinkClick={handleLinkClick} />
       {
         activeLink === "#locations" ? (
-          <Location setSelectedLocation = {setSelectedLocation} setActiveLink = {setActiveLink}/>
-        ) : activeLink === "#location"  && selectedLocation ? (
-          <Area selectedLocation = {selectedLocation} setSelectedArea = {setSelectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon}/>
-        ) : activeLink === "#area"  && selectedArea && !enemyPokemon ?  (
-          <RandomPokemon selectedArea = {selectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon} enemyPokemon = {enemyPokemon}/>
+          <Location setSelectedLocation={setSelectedLocation} setActiveLink={setActiveLink} />
+        ) : activeLink === "#location" && selectedLocation ? (
+          <Area selectedLocation={selectedLocation} setSelectedArea={setSelectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} />
+        ) : activeLink === "#area" && selectedArea && !enemyPokemon ? (
+          <RandomPokemon selectedArea={selectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} enemyPokemon={enemyPokemon} />
         ) : enemyPokemon && activeLink === "#area" ? (
-          <RandomPokemon selectedArea = {selectedArea} setActiveLink = {setActiveLink} setEnemyPokemon = {setEnemyPokemon} enemyPokemon = {enemyPokemon}/>
+          <RandomPokemon selectedArea={selectedArea} setActiveLink={setActiveLink} setEnemyPokemon={setEnemyPokemon} enemyPokemon={enemyPokemon} />
         ) : activeLink === "#battleScreen" && !chosenPokemon ? (
-          <BattleScreen enemyPokemon = {enemyPokemon} ownedPokemons = {ownedPokemons} setChosenPokemon = {setChosenPokemon}/>
+          <BattleScreen enemyPokemon={enemyPokemon} ownedPokemons={setOwnedPokemons} setChosenPokemon={setChosenPokemon} />
         ) : activeLink === "#battleScreen" && chosenPokemon ? (
-          <BattleScreen enemyPokemon = {enemyPokemon} ownedPokemons = {ownedPokemons} chosenPokemon = {chosenPokemon} setActiveLink = {setActiveLink} setChosenPokemon = {setChosenPokemon}/>
+          <BattleScreen enemyPokemon={enemyPokemon} ownedPokemons={setOwnedPokemons} chosenPokemon={chosenPokemon} setActiveLink={setActiveLink} setChosenPokemon={setChosenPokemon} />
         ) : activeLink === "#pokemons" ? (
           <div>
-            { 
+            {
               !selectedStarterPokemon ? (
-              <StarterPokemons setStarter = {setSelectedStarterPokemon} pushStarterPokemon = {ownedPokemons}  />
+                <StarterPokemons setStarter={setSelectedStarterPokemon} pushStarterPokemon={ownedPokemons} />
               ) : (
                 <>
-                  {ownedPokemons.map((pokemon,index) => (
-                    <ShowPokemon pokemon={pokemon}/>
+                  {ownedPokemons.map((pokemon, index) => (
+                    <ShowPokemon pokemon={pokemon} />
                   ))}
                 </>
               )
@@ -54,7 +68,7 @@ function App() {
           </div>
         ) : activeLink === "#pokedex" ? (
           <div>
-            <ShowPokedex/>
+            <ShowPokedex />
           </div>
         ) : activeLink === "#home" ? (
           <div>
@@ -65,5 +79,5 @@ function App() {
     </div>
   );
 }
-    
+
 export default App;

@@ -1,6 +1,6 @@
-const express = require('express')
+import express from "express";
 const app = express()
-const fs = require("fs");
+import * as fs from 'fs'
 function apiData() {
   try {
     const data = fs.readFileSync("./public/pokemonDB.json")
@@ -9,23 +9,30 @@ function apiData() {
     console.log(err)
   }
 }
-const pokemonToSave = null
+app.use(express.json())
+//app.use(express.static("public"))
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
-app.use(express.static("public"))
-
-
-app.get("http://localhost:3000", (req, res) => {
-    res.json()
-    
+app.get("/", (req,res)=>{
+    res.send("test")
 })
 
-app.post("/", (req, res) => {
-    let pokemonDB = apiData()
+app.get("/pokemonDB", (req, res) => {
+    const database = fs.readFileSync("./public/pokemonDB.json")
+    let frontendData = JSON.parse(database)
+    res.send(JSON.stringify(frontendData))
+})
 
-
+app.post("/pokemonDB", (req, res) => {
+    let pokemonDB = req.body
+    console.log(pokemonDB)
     fs.writeFileSync("./public/pokemonDB.json", JSON.stringify(pokemonDB))
-
+    res.send(pokemonDB)
 })
 
 
-app.listen(5000, () => {console.log("Server Running on Port 5000")})
+app.listen(3003, () => {console.log("Server Running on Port 3003")})
