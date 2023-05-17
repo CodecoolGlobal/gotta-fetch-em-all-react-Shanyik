@@ -7,6 +7,8 @@ function StarterPokemons (props) {
     const [starterCharmander, setStarterCharmander] = useState(null)
     const [starterSquirtle, setStarterSquirtle] = useState(null)
 
+    
+
     useEffect(() => {
         fetch("https://pokeapi.co/api/v2/pokemon/1/")
           .then((res) => res.json())

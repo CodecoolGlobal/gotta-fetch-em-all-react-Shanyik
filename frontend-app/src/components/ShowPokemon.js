@@ -1,4 +1,5 @@
-function ShowPokemon (props) {     
+function ShowPokemon (props) { 
+
     return (
         <>
         <div>

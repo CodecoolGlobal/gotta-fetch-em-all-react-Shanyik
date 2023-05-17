@@ -11,11 +11,12 @@ import RandomPokemon from "./components/RandomPokemon";
 function App() {
   const [activeLink, setActiveLink] = useState("#home");
   const [selectedStarterPokemon , setSelectedStarterPokemon] = useState(false);
-  const [ownedPokemons , setOwnedPokemons] = useState([]);
-
+  const [ownedPokemons , setOwnedPokemons] = useState([{}]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
+
+
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
