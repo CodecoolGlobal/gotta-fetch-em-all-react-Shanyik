@@ -14,7 +14,7 @@ function StartBattleScreen (props) {
             {props.ownedPokemons.map((pokemon,index) => (
                 <>
                     <ShowPokemon pokemon={pokemon}/>
-                    <button className="btnStart" onClick={() => {props.setChosenPokemon(pokemon); props.setActiveLink("#battleScreen")}} >Fight!</button>
+                    <button className="btnStart" onClick={() => {props.setChosenPokemon(index); props.setActiveLink("#battleScreen")}} >Fight!</button>
                 </>
             ))}
         </div>
