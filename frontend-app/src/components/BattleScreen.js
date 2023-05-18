@@ -51,18 +51,18 @@ function BattleScreen (props) {
             <button className="btnAttack" onClick={() => {battleMode()}}>Attack ⚔️</button>
         </div>
     ) : result === "win" ? (
-        <>
+        <div className="resultWin">
             <h1>Nice battle, You Won!</h1>
             <h2>Do you want to catch this Pokemon?</h2>
             <ShowPokemon pokemon={props.enemyPokemon}/>
-            <button onClick={() => {props.setActiveLink("#locations"); props.ownedPokemons.push(props.enemyPokemon); setResult(null)}}>Absolutely!</button>
-            <button onClick={() => {props.setActiveLink("#locations"); setResult(null)}}>Nope,Thanks!</button>
-        </>
+            <button className="btnCatchPokemon" onClick={() => {props.setActiveLink("#locations"); props.ownedPokemons.push(props.enemyPokemon); setResult(null)}}>Absolutely!</button>
+            <button className="btnReturn" onClick={() => {props.setActiveLink("#locations"); setResult(null)}}>Nope,Thanks!</button>
+        </div>
     ) : result === "lose" ? (
-        <>
+        <div className="resultLose">
             <h1>Bummer! You lost!</h1>
-            <button onClick={() => {props.setActiveLink("#locations"); setResult(null)}}>Go Back!</button>
-        </>
+            <button className="btnLose" onClick={() => {props.setActiveLink("#locations"); setResult(null)}}>Go Back!</button>
+        </div>
     ) : ("")
  )
 }

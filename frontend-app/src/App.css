@@ -514,7 +514,8 @@ body{
   height: 480px;
   width: 800px;
   z-index: -1;
-  border: 7px solid rgb(224, 4, 4);
+  border: 7px solid rgb(32, 31, 31);
+  border-style: groove;
   box-sizing: border-box;
 }
 
@@ -546,4 +547,72 @@ body{
 
 .enemy-heart {
   margin-top: -155px;
+}
+
+.resultWin {
+  position: absolute;
+  display: block;
+  left: 570px;
+}
+
+.resultWin .statsDiv {
+  position: absolute;
+  display: block;
+  left: 170px;
+  top: 400px;
+}
+
+.resultWin .pokePic {
+  left: -10px;
+}
+
+.btnReturn {
+  position: relative;
+  font-family: 'Pokemon GB';
+  letter-spacing: 3px;
+  font-size: 20px;
+  top: 350px;
+  left: 150px;
+  margin-top: 30px;
+  text-transform: capitalize;
+  border-radius: 15px;
+  border-width: 10px;
+  margin-top: 1px;
+}
+
+.btnReturn:hover {
+  box-shadow: 5px 5px 5px rgb(44, 44, 44);
+}
+
+.btnCatchPokemon {
+  position: relative;
+  font-family: 'Pokemon GB';
+  letter-spacing: 3px;
+  font-size: 20px;
+  top: 350px;
+  left: -100px;
+  text-transform: capitalize;
+  border-radius: 15px;
+  border-width: 10px;
+  margin-top: 1px;
+}
+
+.btnCatchPokemon:hover {
+  box-shadow: 5px 5px 5px rgb(44, 44, 44);
+}
+
+.btnLose {
+  position: relative;
+  font-family: 'Pokemon GB';
+  letter-spacing: 3px;
+  font-size: 20px;
+  top: 350px;
+  text-transform: capitalize;
+  border-radius: 15px;
+  border-width: 10px;
+  margin-top: 1px;
+}
+
+.btnLose:hover {
+  box-shadow: 5px 5px 5px rgb(44, 44, 44);
 }
