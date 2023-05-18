@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import background from "./pictures/pokeBG.jpg";
 
 function Location (props) {   
     function setSelectedLocationFromButton(location) {

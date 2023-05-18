@@ -1,6 +1,7 @@
 import express from "express";
 const app = express()
 import * as fs from 'fs'
+
 function apiData() {
   try {
     const data = fs.readFileSync("./public/pokemonDB.json")
@@ -27,9 +28,10 @@ app.get("/pokemonDB", (req, res) => {
     res.send(JSON.stringify(frontendData))
 })
 
-app.post("/pokemonDB",async (req, res) => {
+app.post("/pokemonDB",(req, res) => {
     try{
     console.log("POST request running")
+    console.log(req.body)
     fs.writeFileSync("./public/pokemonDB.json", JSON.parse(JSON.stringify(req.body)))
     res.send("POST Request Done!")
   }catch(err){

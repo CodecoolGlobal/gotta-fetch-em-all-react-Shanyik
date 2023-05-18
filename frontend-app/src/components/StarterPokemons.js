@@ -22,7 +22,7 @@ function StarterPokemons(props) {
       .then((res) => res.json())
       .then((data) => {
         setStarterSquirtle(data);
-      })})
+      })},[])
 
     return (
         <>
@@ -31,11 +31,11 @@ function StarterPokemons(props) {
             {starterBulbasaur && starterCharmander && starterSquirtle ? (
                 <div className="starterPokemons">
                     <ShowPokemon pokemon={starterBulbasaur}/>
-                    <button className="btnChoose" id ="starterBulbasaur" onClick={() => {props.pushStarterPokemon.push(starterBulbasaur); props.setStarter(true)}}>Select this Pokémon</button>
+                    <button className="btnChoose" id ="starterBulbasaur" onClick={() => {props.setOwnedPokemons([...props.ownedPokemons, starterBulbasaur]); props.setStarter(true)}}>Select this Pokémon</button>
                     <ShowPokemon pokemon={starterCharmander}/>
-                    <button className="btnChoose"  id ="starterCharmander" onClick={() => {props.pushStarterPokemon.push(starterCharmander); props.setStarter(true)}}>Select this Pokémon</button>
+                    <button className="btnChoose"  id ="starterCharmander" onClick={() => {props.setOwnedPokemons([...props.ownedPokemons, starterCharmander]); props.setStarter(true)}}>Select this Pokémon</button>
                     <ShowPokemon pokemon={starterSquirtle}/>
-                    <button className="btnChoose"  id ="starterSquirtle" onClick={() => {props.pushStarterPokemon.push(starterSquirtle); props.setStarter(true)}}>Select this Pokémon</button>
+                    <button className="btnChoose"  id ="starterSquirtle" onClick={() => {props.setOwnedPokemons([...props.ownedPokemons, starterSquirtle]); props.setStarter(true)}}>Select this Pokémon</button>
                 </div>
             ) : ("")}
             

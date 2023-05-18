@@ -11,7 +11,7 @@ import BattleScreen from "./components/BattleScreen";
 import StartBattleScreen from "./components/StartBattleScreen";
 
 function App() {
-  const [activeLink, setActiveLink] = useState("#home");
+  const [activeLink, setActiveLink] = useState("#pokemons");
   const [selectedStarterPokemon, setSelectedStarterPokemon] = useState(false);
   const [ownedPokemons, setOwnedPokemons] = useState([]);
   const [chosenPokemon, setChosenPokemon] = useState(null)
@@ -23,25 +23,31 @@ function App() {
     setActiveLink(link);
   };
 
-  const handlePostRequest = (dataToSend) => {
-      fetch("http://localhost:3003/pokemonDB", {
+  useEffect(() => {
+    fetch("http://localhost:3003/pokemonDB", {
+      method: "GET"
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+      if (!data) {
+        setOwnedPokemons(JSON.stringify(data))
+      }
+    });
+  }, [])
+
+  useEffect(() => {
+    fetch("pokemonDB", {
         method: "POST",
-        mode: "no-cors",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(dataToSend)
-      }).catch(err =>
+        body: JSON.stringify(ownedPokemons)
+        
+      })
+      .catch(err =>
           console.log("An Error Occured!" + err))
-        console.log("Fetch ran!")
-  }
-
-  useEffect(() => {
-    if (ownedPokemons === []){
-      console.log("There is no pokemon to save.")
-    }else if (ownedPokemons !== []){
-      handlePostRequest(ownedPokemons)
-    }
   }, [ownedPokemons])
 
     return (
@@ -59,12 +65,12 @@ function App() {
           ) : activeLink === "#startBattleScreen" ? (
             <StartBattleScreen enemyPokemon={enemyPokemon} ownedPokemons={ownedPokemons} setActiveLink={setActiveLink} setChosenPokemon={setChosenPokemon} />
           ) : activeLink === "#battleScreen" ? (
-            <BattleScreen enemyPokemon={enemyPokemon} ownedPokemons={ownedPokemons} chosenPokemon={chosenPokemon} setActiveLink={setActiveLink} />
+            <BattleScreen enemyPokemon={enemyPokemon} ownedPokemons={ownedPokemons} chosenPokemon={chosenPokemon} setActiveLink={setActiveLink} setOwnedPokemons={setOwnedPokemons} />
           ) : activeLink === "#pokemons" ? (
             <div className="chosenPokemons">
               {
                 !selectedStarterPokemon ? (
-                  <StarterPokemons setStarter={setSelectedStarterPokemon} pushStarterPokemon={ownedPokemons} />
+                  <StarterPokemons setStarter={setSelectedStarterPokemon} setOwnedPokemons={setOwnedPokemons} ownedPokemons={ownedPokemons} />
                 ) : (
                   <>
                     {ownedPokemons.map((pokemon, index) => (
@@ -81,6 +87,7 @@ function App() {
           ) : activeLink === "#home" ? (
             <div>
               <h1>Home</h1>
+              <h2>Pre-Alpha - Early Access: V0.0.1 Released!</h2>
             </div>
           ) : ("")
         }

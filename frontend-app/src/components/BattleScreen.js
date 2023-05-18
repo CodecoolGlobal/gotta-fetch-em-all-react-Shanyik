@@ -6,9 +6,9 @@ function BattleScreen (props) {
 
     function battleMode () {
         
-        setEnemyPokemonHP( (Math.floor(enemyPokemonHP -  ((((2/5+2)*props.enemyPokemon.stats[1]["base_stat"]*60/props.chosenPokemon.stats[2]["base_stat"])/50)+2)*Math.floor(Math.random() * (255 - 217 + 1) + 217)/255)) )
+        setEnemyPokemonHP( (Math.floor(enemyPokemonHP -  ((((2/5+2)*props.chosenPokemon.stats[1]["base_stat"]*60/props.enemyPokemon.stats[2]["base_stat"])/50)+2)*Math.floor(Math.random() * (255 - 217 + 1) + 217)/255)) )
         if(enemyPokemonHP <= 0) {setResult("win")}
-        setChosenPokemonHP( (Math.floor(chosenPokemonHP -  ((((2/5+2)*props.chosenPokemon.stats[1]["base_stat"]*60/props.enemyPokemon.stats[2]["base_stat"])/50)+2)*Math.floor(Math.random() * (255 - 217 + 1) + 217)/255)) )
+        setChosenPokemonHP( (Math.floor(chosenPokemonHP -  ((((2/5+2)*props.enemyPokemon.stats[1]["base_stat"]*60/props.chosenPokemon.stats[2]["base_stat"])/50)+2)*Math.floor(Math.random() * (255 - 217 + 1) + 217)/255)) )
         if(chosenPokemonHP <= 0) {setResult("lose")}
     }
 
@@ -55,7 +55,7 @@ function BattleScreen (props) {
             <h1>Nice battle, You Won!</h1>
             <h2>Do you want to catch this Pokemon?</h2>
             <ShowPokemon pokemon={props.enemyPokemon}/>
-            <button className="btnCatchPokemon" onClick={() => {props.setActiveLink("#locations"); props.ownedPokemons.push(props.enemyPokemon); setResult(null)}}>Absolutely!</button>
+            <button className="btnCatchPokemon" onClick={() => {props.setActiveLink("#locations"); props.setOwnedPokemons([...props.ownedPokemons, props.enemyPokemon]); setResult(null)}}>Absolutely!</button>
             <button className="btnReturn" onClick={() => {props.setActiveLink("#locations"); setResult(null)}}>Nope,Thanks!</button>
         </div>
     ) : result === "lose" ? (

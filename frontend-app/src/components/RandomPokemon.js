@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ShowPokemon from "./ShowPokemon";
 
 function RandomPokemon (props) {
